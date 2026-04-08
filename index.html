@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="description" content="Türkiye'nin ilk AI destekli hukuk platformu. Yapay zeka ile hukuki yönlendirme alın, baro doğrulamalı avukatlarla bağlanın.">
+<meta name="theme-color" content="#1B3A6B">
+<meta property="og:title" content="Cebindeki Avukat — AI Hukuk Platformu">
+<meta property="og:description" content="Yapay zeka ile saniyeler içinde hukuki yönlendirme alın. Baro doğrulamalı avukatlarla güvenle bağlanın.">
+<meta property="og:type" content="website">
+<title>Cebindeki Avukat — AI Hukuk Platformu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKEN — ONE COLOUR SYSTEM
+   Primary: #1B3A6B (deep institutional blue)
+   All text on white: passes WCAG AA minimum 4.5:1
+============================================================ */
+:root {
+  --b900: #0D1F3C;
+  --b800: #1B3A6B;
+  --b700: #1E4D8C;
+  --b600: #2563A8;
+  --b100: #EAF0FA;
+  --b050: #F4F7FD;
+  --white: #FFFFFF;
+  --n900: #0F1923;
+  --n700: #374151;
+  --n500: #6B7280;
+  --n300: #D1D5DB;
+  --n200: #E5E7EB;
+  --n100: #F3F4F6;
+  --ok: #166534;
+  --ok-bg: #DCFCE7;
+  --warn: #92400E;
+  --warn-bg: #FEF3C7;
+  --err: #991B1B;
+  --err-bg: #FEE2E2;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px;
+  --s6: 24px; --s7: 32px; --s8: 40px; --s9: 48px; --s10: 64px;
+  --r2: 4px; --r3: 8px; --r4: 12px; --r5: 16px; --r6: 24px;
+  --t-xs: 13px; --t-sm: 15px; --t-md: 17px; --t-lg: 20px;
+  --t-xl: 26px; --t-2xl: 34px; --t-3xl: 44px;
+  --sh1: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --sh2: 0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --sh3: 0 10px 32px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  --nav-h: 64px;
+}
+
+/* RESET & BASE */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Lexend',sans-serif; font-size:var(--t-md); line-height:1.6;
+  color:var(--n900); background:var(--b050); -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--n300); border-radius:99px; }
+:focus-visible { outline:3px solid var(--b600); outline-offset:2px; }
+
+/* TYPOGRAPHY */
+h1 { font-family:'Source Serif 4',serif; font-size:var(--t-3xl); font-weight:700; line-height:1.12; color:var(--b900); letter-spacing:-.02em; }
+h2 { font-family:'Source Serif 4',serif; font-size:var(--t-2xl); font-weight:700; line-height:1.2; color:var(--b900); }
+h3 { font-family:'Source Serif 4',serif; font-size:var(--t-xl); font-weight:600; color:var(--b900); }
+h4 { font-size:var(--t-md); font-weight:600; color:var(--b900); }
+p { color:var(--n700); }
+
+/* ROUTING */
+.view { display:none; flex-direction:column; flex:1; }
+.view.active { display:flex; }
+
+/* NAV */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:500; height:var(--nav-h);
+  background:var(--b800); display:flex; align-items:center; padding:0 var(--s8); gap:var(--s4);
+  box-shadow:0 2px 8px rgba(0,0,0,.18);
+}
+.nav-logo { display:flex; align-items:center; gap:var(--s3); font-family:'Source Serif 4',serif; font-size:20px; font-weight:700; color:var(--white); cursor:pointer; text-decoration:none; flex-shrink:0; }
+.nav-logo-mark { width:36px; height:36px; background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.3); border-radius:var(--r3); display:flex; align-items:center; justify-content:center; font-size:18px; }
+.nav-links { display:flex; align-items:center; gap:var(--s1); margin-left:var(--s6); flex:1; }
+.nav-link { font-size:var(--t-sm); font-weight:500; color:rgba(255,255,255,.72); padding:var(--s2) var(--s4); border-radius:var(--r3); cursor:pointer; transition:background .15s,color .15s; white-space:nowrap; }
+.nav-link:hover { background:rgba(255,255,255,.12); color:var(--white); }
+.nav-link.hi { color:var(--white); background:rgba(255,255,255,.12); }
+.nav-actions { display:flex; align-items:center; gap:var(--s3); margin-left:auto; }
+.nav-user { font-size:var(--t-sm); font-weight:600; color:rgba(255,255,255,.85); cursor:pointer; padding:var(--s2) var(--s3); }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; color:var(--white); font-size:24px; line-height:1; padding:var(--s2); }
+@media(max-width:767px) { .nav { padding:0 var(--s5); } .nav-links { display:none; } .nav-toggle { display:block; margin-left:auto; } }
+
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:var(--s2); min-height:52px; padding:0 var(--s7); border-radius:var(--r5); font-family:'Lexend',sans-serif; font-size:var(--t-sm); font-weight:600; cursor:pointer; border:2px solid transparent; transition:all .18s; white-space:nowrap; text-decoration:none; }
+.btn:disabled { opacity:.42; cursor:not-allowed; transform:none !important; }
+.btn-primary { background:var(--b800); color:var(--white); border-color:var(--b800); }
+.btn-primary:not(:disabled):hover { background:var(--b700); border-color:var(--b700); transform:translateY(-1px); box-shadow:var(--sh2); }
+.btn-outline { background:transparent; color:var(--b800); border-color:var(--b800); }
+.btn-outline:not(:disabled):hover { background:var(--b100); transform:translateY(-1px); }
+.btn-white { background:var(--white); color:var(--b800); border-color:var(--white); font-weight:700; }
+.btn-white:not(:disabled):hover { background:var(--b100); transform:translateY(-1px); box-shadow:var(--sh2); }
+.btn-ghost { background:transparent; color:rgba(255,255,255,.8); border-color:rgba(255,255,255,.35); min-height:40px; padding:0 var(--s5); font-size:var(--t-xs); }
+.btn-ghost:hover { background:rgba(255,255,255,.1); color:var(--white); }
+.btn-sm { min-height:40px; padding:0 var(--s5); font-size:var(--t-xs); border-radius:var(--r4); }
+.btn-full { width:100%; }
+
+/* FORM */
+.field { display:flex; flex-direction:column; gap:var(--s2); }
+.label { font-size:var(--t-sm); font-weight:600; color:var(--n900); }
+.input,.textarea,.select { width:100%; min-height:52px; background:var(--white); border:2px solid var(--n300); border-radius:var(--r4); padding:0 var(--s5); font-family:'Lexend',sans-serif; font-size:var(--t-md); color:var(--n900); outline:none; transition:border-color .15s,box-shadow .15s; -webkit-appearance:none; }
+.textarea { padding:var(--s4) var(--s5); resize:none; min-height:auto; }
+.input:focus,.textarea:focus,.select:focus { border-color:var(--b800); box-shadow:0 0 0 3px rgba(27,58,107,.15); }
+.input::placeholder,.textarea::placeholder { color:var(--n500); }
+
+/* CHIPS */
+.chip { display:inline-flex; align-items:center; gap:var(--s1); padding:var(--s1) var(--s4); border-radius:99px; font-size:var(--t-xs); font-weight:600; white-space:nowrap; }
+.chip-blue { background:var(--b100); color:var(--b800); }
+.chip-ok { background:var(--ok-bg); color:var(--ok); }
+.chip-warn { background:var(--warn-bg); color:var(--warn); }
+
+/* CARD */
+.card { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r6); padding:var(--s7); box-shadow:var(--sh1); }
+.card-blue { background:var(--b100); border-color:rgba(27,58,107,.15); }
+.divider { height:1px; background:var(--n200); }
+.page-top { padding-top:var(--nav-h); }
+
+/* HERO */
+.hero { background:var(--b800); padding:var(--s10) var(--s8) calc(var(--s10) + var(--s6)); position:relative; overflow:hidden; }
+.hero::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 55% 70% at 90% 40%,rgba(255,255,255,.05) 0%,transparent 65%),radial-gradient(ellipse 40% 60% at 5% 85%,rgba(255,255,255,.03) 0%,transparent 55%); }
+.hero-inner { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 400px; gap:var(--s10); align-items:center; position:relative; z-index:1; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:var(--s2); background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.25); color:rgba(255,255,255,.9); padding:var(--s2) var(--s5); border-radius:99px; font-size:var(--t-xs); font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:var(--s6); }
+.hero-eyebrow::before { content:''; width:7px; height:7px; border-radius:50%; background:#4ADE80; flex-shrink:0; animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.4} }
+.hero h1 { color:var(--white); margin-bottom:var(--s5); }
+.hero h1 em { font-style:italic; color:#93C5FD; }
+.hero-sub { font-size:var(--t-md); font-weight:300; color:rgba(255,255,255,.78); line-height:1.75; margin-bottom:var(--s7); max-width:500px; }
+.hero-actions { display:flex; gap:var(--s4); flex-wrap:wrap; margin-bottom:var(--s9); }
+.hero-trust { display:flex; gap:var(--s7); flex-wrap:wrap; }
+.trust-item { display:flex; align-items:center; gap:var(--s3); font-size:var(--t-sm); font-weight:500; color:rgba(255,255,255,.78); }
+.trust-icon { width:32px; height:32px; background:rgba(255,255,255,.13); border-radius:var(--r3); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+
+/* Hero preview */
+.preview-card { background:var(--white); border-radius:var(--r6); overflow:hidden; box-shadow:var(--sh3); }
+.preview-bar { background:var(--b900); padding:var(--s4) var(--s6); display:flex; align-items:center; gap:var(--s3); }
+.preview-av { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size:16px; }
+.preview-bar-name { font-size:var(--t-sm); font-weight:600; color:var(--white); }
+.preview-bar-status { font-size:var(--t-xs); color:rgba(255,255,255,.5); display:flex; align-items:center; gap:var(--s2); margin-top:2px; }
+.preview-bar-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#4ADE80; flex-shrink:0; }
+.preview-body { padding:var(--s5); display:flex; flex-direction:column; gap:var(--s3); }
+.preview-bubble { padding:var(--s3) var(--s5); border-radius:var(--r5); font-size:var(--t-sm); line-height:1.6; max-width:90%; }
+.preview-user { background:var(--b800); color:var(--white); margin-left:auto; border-bottom-right-radius:var(--r2); }
+.preview-ai { background:var(--n100); color:var(--n900); border:1.5px solid var(--n200); border-bottom-left-radius:var(--r2); }
+.preview-cta { background:var(--b100); border:1.5px solid rgba(27,58,107,.2); border-radius:var(--r4); padding:var(--s4); margin-top:var(--s1); }
+.preview-cta-t { font-size:var(--t-sm); font-weight:600; color:var(--b800); margin-bottom:var(--s3); }
+.preview-cta-btn { width:100%; background:var(--b800); color:var(--white); border:none; border-radius:var(--r4); padding:var(--s3) var(--s5); font-family:'Lexend',sans-serif; font-size:var(--t-sm); font-weight:600; cursor:pointer; transition:background .15s; }
+.preview-cta-btn:hover { background:var(--b700); }
+
+/* SECTIONS */
+.section { padding:var(--s10) var(--s8); max-width:1080px; margin:0 auto; }
+.section-tag { display:inline-flex; align-items:center; gap:var(--s2); font-size:var(--t-xs); font-weight:700; color:var(--b800); letter-spacing:.08em; text-transform:uppercase; margin-bottom:var(--s4); }
+.section-tag::before { content:''; width:18px; height:3px; background:var(--b800); border-radius:2px; }
+.section-desc { font-size:var(--t-md); color:var(--n700); max-width:540px; line-height:1.75; font-weight:300; margin-top:var(--s4); }
+
+/* TOPICS */
+.topics-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s4); margin-top:var(--s7); }
+.topic-btn { background:var(--white); border:2px solid var(--n200); border-radius:var(--r5); padding:var(--s6); cursor:pointer; transition:all .2s; text-align:left; display:flex; flex-direction:column; gap:var(--s3); }
+.topic-btn:hover { border-color:var(--b800); background:var(--b100); transform:translateY(-3px); box-shadow:var(--sh2); }
+.topic-btn:active { transform:scale(.98); }
+.topic-emoji { width:52px; height:52px; background:var(--b100); border:2px solid rgba(27,58,107,.15); border-radius:var(--r4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; transition:background .2s; }
+.topic-btn:hover .topic-emoji { background:rgba(27,58,107,.15); }
+.topic-name { font-size:var(--t-md); font-weight:600; color:var(--b900); }
+.topic-hint { font-size:var(--t-xs); color:var(--n500); font-weight:400; }
+
+/* STEPS */
+.steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s5); margin-top:var(--s7); }
+.step-card { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r5); padding:var(--s6); position:relative; overflow:hidden; transition:all .2s; }
+.step-card:hover { box-shadow:var(--sh2); transform:translateY(-2px); border-color:var(--b800); }
+.step-num-bg { position:absolute; top:-12px; right:var(--s5); font-family:'Source Serif 4',serif; font-size:80px; font-weight:700; color:var(--b100); line-height:1; pointer-events:none; }
+.step-icon { width:48px; height:48px; background:var(--b100); border:2px solid rgba(27,58,107,.15); border-radius:var(--r4); display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:var(--s5); }
+.step-card h4 { margin-bottom:var(--s2); }
+.step-card p { font-size:var(--t-sm); color:var(--n700); line-height:1.6; font-weight:300; }
+
+/* FEATURES */
+.features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s5); margin-top:var(--s7); }
+.feature-card { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r5); padding:var(--s7); transition:all .2s; }
+.feature-card:hover { box-shadow:var(--sh2); border-color:rgba(27,58,107,.3); }
+.feature-card.featured { background:var(--b800); border-color:var(--b700); }
+.feature-card.featured h4 { color:var(--white); }
+.feature-card.featured p { color:rgba(255,255,255,.72); }
+.feat-icon { width:48px; height:48px; border-radius:var(--r4); display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:var(--s5); }
+.feature-card h4 { margin-bottom:var(--s3); font-size:var(--t-md); }
+.feature-card p { font-size:var(--t-sm); line-height:1.65; font-weight:300; }
+
+/* PRICING */
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s5); margin-top:var(--s7); }
+.price-card { background:var(--white); border:2px solid var(--n200); border-radius:var(--r6); padding:var(--s8); display:flex; flex-direction:column; gap:0; transition:all .2s; }
+.price-card:hover { box-shadow:var(--sh2); transform:translateY(-2px); }
+.price-card.pop { background:var(--b800); border-color:var(--b700); }
+.price-badge { display:inline-block; background:#F59E0B; color:var(--b900); font-size:var(--t-xs); font-weight:700; padding:var(--s1) var(--s4); border-radius:99px; margin-bottom:var(--s4); }
+.price-tier { font-size:var(--t-xs); font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--n500); margin-bottom:var(--s3); }
+.price-card.pop .price-tier { color:rgba(255,255,255,.55); }
+.price-amount { font-family:'Source Serif 4',serif; font-size:40px; font-weight:700; line-height:1; color:var(--b900); margin-bottom:var(--s2); }
+.price-card.pop .price-amount { color:var(--white); }
+.price-period { font-size:var(--t-sm); color:var(--n500); margin-bottom:var(--s5); font-weight:300; }
+.price-card.pop .price-period { color:rgba(255,255,255,.55); }
+.price-desc { font-size:var(--t-sm); color:var(--n700); margin-bottom:var(--s6); line-height:1.6; font-weight:300; }
+.price-card.pop .price-desc { color:rgba(255,255,255,.65); }
+.price-feats { list-style:none; display:flex; flex-direction:column; gap:var(--s3); margin-bottom:var(--s7); flex:1; }
+.price-feats li { display:flex; gap:var(--s3); align-items:flex-start; font-size:var(--t-sm); font-weight:300; color:var(--n700); }
+.price-feats li::before { content:'✓'; color:var(--b800); font-weight:700; flex-shrink:0; margin-top:1px; }
+.price-card.pop .price-feats li { color:rgba(255,255,255,.75); }
+.price-card.pop .price-feats li::before { color:#93C5FD; }
+
+/* CTA BAND */
+.cta-band { background:var(--b900); padding:var(--s10) var(--s8); text-align:center; }
+.cta-band h2 { color:var(--white); margin-bottom:var(--s4); }
+.cta-band p { color:rgba(255,255,255,.6); font-weight:300; margin-bottom:var(--s7); }
+.cta-row { display:flex; gap:var(--s4); max-width:440px; margin:0 auto; flex-wrap:wrap; justify-content:center; }
+.cta-row .input { flex:1; min-width:220px; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.25); color:var(--white); }
+.cta-row .input:focus { border-color:rgba(255,255,255,.6); box-shadow:none; }
+.cta-row .input::placeholder { color:rgba(255,255,255,.35); }
+
+/* FOOTER */
+footer { background:#080F1A; padding:var(--s10) var(--s8) var(--s8); }
+.foot-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:var(--s10); max-width:1080px; margin:0 auto; padding-bottom:var(--s8); border-bottom:1px solid rgba(255,255,255,.08); }
+.foot-logo { display:flex; align-items:center; gap:var(--s3); font-family:'Source Serif 4',serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:var(--s5); }
+.foot-logo .nav-logo-mark { width:30px; height:30px; font-size:14px; }
+footer p { font-size:var(--t-sm); color:rgba(255,255,255,.4); line-height:1.7; font-weight:300; }
+.foot-col h5 { font-size:var(--t-sm); font-weight:600; color:rgba(255,255,255,.7); margin-bottom:var(--s5); }
+.foot-col a { display:block; font-size:var(--t-sm); font-weight:300; color:rgba(255,255,255,.4); text-decoration:none; margin-bottom:var(--s3); cursor:pointer; transition:color .15s; }
+.foot-col a:hover { color:rgba(255,255,255,.8); }
+.foot-bottom { max-width:1080px; margin:var(--s7) auto 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--s4); }
+.foot-bottom p { font-size:var(--t-xs); }
+.foot-disclaimer { max-width:580px; }
+
+/* CHAT */
+.chat-layout { display:grid; grid-template-columns:272px 1fr; height:calc(100vh - var(--nav-h)); margin-top:var(--nav-h); }
+.chat-sidebar { background:var(--white); border-right:1.5px solid var(--n200); display:flex; flex-direction:column; overflow:hidden; }
+.cs-head { padding:var(--s6); border-bottom:1.5px solid var(--n200); }
+.cs-head h4 { margin-bottom:var(--s5); }
+.cs-label { font-size:var(--t-xs); font-weight:700; color:var(--n500); letter-spacing:.07em; text-transform:uppercase; padding:var(--s5) var(--s5) var(--s2); }
+.cs-topics { flex:1; overflow-y:auto; padding:var(--s2); }
+.cs-topic { display:flex; align-items:center; gap:var(--s4); padding:var(--s3) var(--s4); border-radius:var(--r4); cursor:pointer; transition:all .14s; font-size:var(--t-sm); font-weight:500; color:var(--n700); border:1.5px solid transparent; }
+.cs-topic:hover { background:var(--b100); color:var(--b800); }
+.cs-topic.on { background:var(--b100); color:var(--b800); border-color:rgba(27,58,107,.2); font-weight:600; }
+.cs-topic .ti { font-size:18px; width:24px; text-align:center; flex-shrink:0; }
+.cs-foot { padding:var(--s5); border-top:1.5px solid var(--n200); }
+.cs-notice { font-size:var(--t-xs); font-weight:400; color:var(--ok); background:var(--ok-bg); border:1.5px solid rgba(22,101,52,.2); border-radius:var(--r4); padding:var(--s4); line-height:1.55; }
+.chat-main { display:flex; flex-direction:column; background:var(--b050); }
+.chat-topbar { background:var(--white); border-bottom:1.5px solid var(--n200); padding:var(--s4) var(--s6); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.ctb-info h4 { font-size:var(--t-md); margin-bottom:2px; }
+.ctb-info p { font-size:var(--t-xs); color:var(--n500); font-weight:300; }
+.online-badge { display:flex; align-items:center; gap:var(--s2); font-size:var(--t-xs); font-weight:600; color:var(--ok); background:var(--ok-bg); padding:var(--s2) var(--s4); border-radius:99px; }
+.online-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#22C55E; flex-shrink:0; animation:blink 2s infinite; }
+.msgs { flex:1; overflow-y:auto; padding:var(--s6) var(--s6) var(--s4); display:flex; flex-direction:column; gap:var(--s5); }
+.msg-row { display:flex; gap:var(--s3); max-width:80%; }
+.msg-row.u { align-self:flex-end; flex-direction:row-reverse; }
+.msg-row.a { align-self:flex-start; }
+.msg-av { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; flex-shrink:0; margin-top:2px; }
+.a-av { background:var(--b800); color:var(--white); font-family:'Source Serif 4',serif; }
+.u-av { background:var(--b100); color:var(--b800); border:2px solid rgba(27,58,107,.2); }
+.msg-body { display:flex; flex-direction:column; gap:var(--s1); }
+.bubble { padding:var(--s4) var(--s5); border-radius:18px; font-size:var(--t-sm); line-height:1.65; font-weight:400; word-break:break-word; }
+.msg-row.a .bubble { background:var(--white); color:var(--n900); border:1.5px solid var(--n200); border-bottom-left-radius:var(--r2); }
+.msg-row.u .bubble { background:var(--b800); color:var(--white); border-bottom-right-radius:var(--r2); }
+.msg-time { font-size:11px; color:var(--n500); padding:0 4px; font-weight:300; }
+.msg-row.u .msg-time { text-align:right; }
+.typing-bubble { background:var(--white); border:1.5px solid var(--n200); border-radius:18px; border-bottom-left-radius:var(--r2); padding:var(--s4) var(--s5); display:flex; gap:5px; align-items:center; width:64px; }
+.typing-bubble span { width:7px; height:7px; border-radius:50%; background:var(--n500); animation:bounce .9s infinite; }
+.typing-bubble span:nth-child(2) { animation-delay:.15s; }
+.typing-bubble span:nth-child(3) { animation-delay:.3s; }
+@keyframes bounce { 0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)} }
+.lawyer-suggest { background:var(--b100); border:1.5px solid rgba(27,58,107,.2); border-radius:var(--r5); padding:var(--s5); max-width:80%; align-self:flex-start; margin-left:calc(34px + var(--s3)); }
+.lawyer-suggest h4 { font-size:var(--t-sm); margin-bottom:var(--s2); }
+.lawyer-suggest p { font-size:var(--t-xs); color:var(--n700); margin-bottom:var(--s4); font-weight:300; }
+.qp-bar { padding:var(--s3) var(--s6) var(--s1); display:flex; gap:var(--s3); overflow-x:auto; flex-shrink:0; }
+.qp-bar::-webkit-scrollbar { display:none; }
+.qp-chip { white-space:nowrap; background:var(--white); border:1.5px solid var(--n300); border-radius:99px; padding:var(--s2) var(--s5); font-size:var(--t-xs); font-weight:500; color:var(--n700); cursor:pointer; transition:all .14s; flex-shrink:0; }
+.qp-chip:hover { border-color:var(--b800); color:var(--b800); background:var(--b100); }
+.input-bar { background:var(--white); border-top:1.5px solid var(--n200); padding:var(--s4) var(--s6); display:flex; gap:var(--s4); align-items:flex-end; flex-shrink:0; }
+.chat-textarea { flex:1; background:var(--b050); border:2px solid var(--n300); border-radius:24px; padding:var(--s4) var(--s6); font-family:'Lexend',sans-serif; font-size:var(--t-md); color:var(--n900); outline:none; resize:none; max-height:120px; line-height:1.5; transition:border-color .15s; }
+.chat-textarea:focus { border-color:var(--b800); background:var(--white); box-shadow:0 0 0 3px rgba(27,58,107,.1); }
+.chat-textarea::placeholder { color:var(--n500); }
+.send-btn { width:52px; height:52px; border-radius:50%; background:var(--b800); color:var(--white); border:none; cursor:pointer; font-size:20px; display:flex; align-items:center; justify-content:center; transition:all .18s; flex-shrink:0; }
+.send-btn:hover { background:var(--b700); transform:scale(1.05); }
+.send-btn:disabled { background:var(--n300); cursor:default; transform:none; }
+
+/* LAWYERS */
+.lawyers-hero { background:var(--b800); padding:var(--s9) var(--s8); }
+.lawyers-hero-inner { max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--s6); }
+.lawyers-hero h1 { color:var(--white); font-size:var(--t-2xl); }
+.lawyers-hero p { color:rgba(255,255,255,.65); font-weight:300; margin-top:var(--s3); }
+.lawyers-body { padding:var(--s8); max-width:1080px; margin:0 auto; }
+.filter-bar { display:flex; gap:var(--s3); flex-wrap:wrap; margin-bottom:var(--s7); }
+.filter-pill { padding:var(--s3) var(--s6); border:2px solid var(--n300); background:var(--white); border-radius:99px; font-size:var(--t-sm); font-weight:500; cursor:pointer; transition:all .14s; color:var(--n700); min-height:44px; }
+.filter-pill:hover { border-color:var(--b800); color:var(--b800); }
+.filter-pill.on { background:var(--b800); border-color:var(--b800); color:var(--white); font-weight:600; }
+.lgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:var(--s6); }
+.lcard { background:var(--white); border:2px solid var(--n200); border-radius:var(--r6); padding:var(--s6); cursor:pointer; transition:all .2s; }
+.lcard:hover { border-color:var(--b800); transform:translateY(-3px); box-shadow:var(--sh2); }
+.lcard-top { display:flex; gap:var(--s5); align-items:flex-start; margin-bottom:var(--s5); }
+.lcard-av { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',serif; font-size:18px; font-weight:700; color:var(--white); flex-shrink:0; }
+.lcard-info { flex:1; }
+.lcard-name { font-size:var(--t-md); font-weight:600; color:var(--b900); margin-bottom:3px; }
+.lcard-loc { font-size:var(--t-sm); color:var(--n500); font-weight:300; display:flex; align-items:center; gap:var(--s2); }
+.lcard-rating { font-size:var(--t-sm); font-weight:700; color:#B45309; margin-top:var(--s2); display:flex; align-items:center; gap:var(--s2); }
+.lcard-verified { display:inline-flex; align-items:center; gap:var(--s1); background:var(--ok-bg); color:var(--ok); font-size:var(--t-xs); font-weight:600; padding:2px var(--s3); border-radius:99px; margin-top:var(--s2); }
+.lcard-tags { display:flex; flex-wrap:wrap; gap:var(--s2); margin-bottom:var(--s5); }
+.lcard-tag { background:var(--b100); color:var(--b800); border:1.5px solid rgba(27,58,107,.15); font-size:var(--t-xs); font-weight:600; padding:3px var(--s4); border-radius:99px; }
+.lcard-footer { display:flex; align-items:center; justify-content:space-between; }
+.lcard-price-num { font-family:'Source Serif 4',serif; font-size:22px; font-weight:700; color:var(--b900); }
+.lcard-price-period { font-size:var(--t-xs); color:var(--n500); font-weight:300; }
+.lcard-avail { font-size:var(--t-xs); font-weight:600; padding:3px var(--s4); border-radius:99px; margin-bottom:var(--s3); text-align:right; display:block; }
+.av-yes { background:var(--ok-bg); color:var(--ok); }
+.av-no { background:var(--n100); color:var(--n500); }
+
+/* AUTH */
+.auth-screen { min-height:100vh; background:var(--b800); display:flex; align-items:center; justify-content:center; padding:var(--s7); }
+.auth-card { background:var(--white); border-radius:var(--r6); padding:var(--s9); width:100%; max-width:420px; box-shadow:var(--sh3); }
+.auth-logo { display:flex; align-items:center; gap:var(--s4); margin-bottom:var(--s3); justify-content:center; }
+.auth-logo-mark { width:44px; height:44px; background:var(--b800); border-radius:var(--r4); display:flex; align-items:center; justify-content:center; font-size:22px; }
+.auth-logo-text { font-family:'Source Serif 4',serif; font-size:20px; font-weight:700; color:var(--b800); }
+.auth-sub { text-align:center; font-size:var(--t-sm); color:var(--n500); font-weight:300; margin-bottom:var(--s8); }
+.auth-tabs { display:grid; grid-template-columns:repeat(3,1fr); border:2px solid var(--n200); border-radius:var(--r4); overflow:hidden; margin-bottom:var(--s7); }
+.auth-tab { padding:var(--s4); font-size:var(--t-sm); cursor:pointer; text-align:center; font-family:'Lexend',sans-serif; font-weight:500; color:var(--n700); background:transparent; border:none; transition:all .14s; }
+.auth-tab.on { background:var(--b800); color:var(--white); font-weight:600; }
+
+/* PORTAL */
+.portal-layout { display:grid; grid-template-columns:240px 1fr; min-height:calc(100vh - var(--nav-h)); margin-top:var(--nav-h); }
+.portal-side { background:var(--white); border-right:1.5px solid var(--n200); position:sticky; top:var(--nav-h); height:calc(100vh - var(--nav-h)); overflow-y:auto; display:flex; flex-direction:column; }
+.portal-brand { padding:var(--s6); border-bottom:1.5px solid var(--n200); }
+.portal-brand-t { font-size:var(--t-sm); font-weight:700; color:var(--b800); }
+.portal-brand-n { font-size:var(--t-xs); color:var(--n500); font-weight:300; margin-top:2px; }
+.portal-grp { font-size:var(--t-xs); font-weight:700; color:var(--n500); padding:var(--s5) var(--s6) var(--s2); letter-spacing:.07em; text-transform:uppercase; }
+.portal-item { display:flex; align-items:center; gap:var(--s4); padding:var(--s4) var(--s6); cursor:pointer; font-size:var(--t-sm); font-weight:500; color:var(--n700); transition:all .14s; border-left:3px solid transparent; }
+.portal-item:hover { color:var(--b800); background:var(--b100); }
+.portal-item.on { color:var(--b800); background:var(--b100); border-left-color:var(--b800); font-weight:600; }
+.portal-item-icon { font-size:18px; width:22px; text-align:center; flex-shrink:0; }
+.portal-main { padding:var(--s8); background:var(--b050); }
+.psec { display:none; }
+.psec.on { display:block; }
+.psec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--s7); flex-wrap:wrap; gap:var(--s4); }
+.psec-head h2 { font-size:var(--t-xl); }
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s5); margin-bottom:var(--s7); }
+.stat-card { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r5); padding:var(--s6); }
+.stat-icon { font-size:22px; margin-bottom:var(--s4); }
+.stat-val { font-family:'Source Serif 4',serif; font-size:28px; font-weight:700; color:var(--b900); line-height:1; }
+.stat-lbl { font-size:var(--t-xs); color:var(--n500); margin-top:var(--s2); font-weight:300; }
+.empty-state { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r5); padding:var(--s10); text-align:center; color:var(--n500); font-size:var(--t-md); font-weight:300; line-height:1.7; }
+.tools-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--s5); margin-bottom:var(--s6); }
+.tool-card { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r5); padding:var(--s6); cursor:pointer; transition:all .2s; }
+.tool-card:hover { border-color:var(--b800); box-shadow:var(--sh2); transform:translateY(-2px); }
+.tool-card-icon { font-size:28px; margin-bottom:var(--s4); }
+.tool-card h4 { margin-bottom:var(--s2); }
+.tool-card p { font-size:var(--t-sm); color:var(--n700); font-weight:300; line-height:1.6; }
+.tool-output { background:var(--white); border:1.5px solid var(--n200); border-radius:var(--r5); padding:var(--s6); margin-top:var(--s5); display:none; }
+.tool-output.on { display:block; }
+.tool-result { background:var(--b050); border:1.5px solid var(--n200); border-radius:var(--r4); padding:var(--s6); font-size:var(--t-sm); line-height:1.75; font-weight:300; white-space:pre-wrap; color:var(--n900); margin-top:var(--s5); display:none; }
+.tool-result.on { display:block; }
+
+/* BOOKING MODAL */
+.overlay { position:fixed; inset:0; background:rgba(8,15,26,.65); backdrop-filter:blur(5px); z-index:600; display:none; align-items:flex-end; justify-content:center; padding:var(--s5); }
+.overlay.on { display:flex; }
+.modal { background:var(--white); border-radius:var(--r6); padding:var(--s8); width:100%; max-width:500px; max-height:90vh; overflow-y:auto; animation:up .28s ease; }
+@keyframes up { from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1} }
+.modal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--s7); }
+.modal-head h3 { font-size:var(--t-xl); }
+.modal-close { width:40px; height:40px; border-radius:50%; border:1.5px solid var(--n200); background:var(--n100); cursor:pointer; font-size:18px; color:var(--n700); display:flex; align-items:center; justify-content:center; transition:all .14s; }
+.modal-close:hover { background:var(--n200); }
+.modal-lawyer { display:flex; gap:var(--s5); align-items:center; background:var(--b100); border:1.5px solid rgba(27,58,107,.15); border-radius:var(--r5); padding:var(--s5); margin-bottom:var(--s7); }
+.slots-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s3); margin-bottom:var(--s7); }
+.slot { border:2px solid var(--n200); border-radius:var(--r4); padding:var(--s4) var(--s3); text-align:center; cursor:pointer; transition:all .14s; min-height:64px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; }
+.slot:hover { border-color:var(--b800); background:var(--b100); }
+.slot.on { border-color:var(--b800); background:var(--b800); }
+.slot-time { font-size:var(--t-md); font-weight:600; color:var(--b900); }
+.slot-date { font-size:var(--t-xs); color:var(--n500); font-weight:300; }
+.slot.on .slot-time,.slot.on .slot-date { color:var(--white); }
+.price-sum { background:var(--b100); border:1.5px solid rgba(27,58,107,.15); border-radius:var(--r4); padding:var(--s5); margin-bottom:var(--s7); }
+.price-row { display:flex; justify-content:space-between; padding:var(--s2) 0; font-size:var(--t-sm); font-weight:400; color:var(--n700); }
+.price-row.tot { font-weight:700; font-size:var(--t-md); color:var(--b800); border-top:1.5px solid rgba(27,58,107,.15); padding-top:var(--s4); margin-top:var(--s2); }
+
+/* SUCCESS */
+.success-screen { position:fixed; inset:0; z-index:700; background:var(--b800); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:var(--s8); opacity:0; pointer-events:none; transition:opacity .3s; }
+.success-screen.on { opacity:1; pointer-events:all; }
+.success-icon { font-size:72px; margin-bottom:var(--s6); }
+.success-screen h2 { color:var(--white); margin-bottom:var(--s4); }
+.success-screen p { color:rgba(255,255,255,.65); font-weight:300; max-width:360px; margin-bottom:var(--s8); line-height:1.7; }
+
+/* TOAST */
+.toast { position:fixed; bottom:var(--s8); left:50%; transform:translateX(-50%) translateY(12px); background:var(--b900); color:var(--white); border-radius:99px; padding:var(--s4) var(--s7); font-size:var(--t-sm); font-weight:500; z-index:800; opacity:0; pointer-events:none; transition:all .28s; white-space:nowrap; box-shadow:var(--sh3); }
+.toast.on { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:1023px) {
+  .hero-inner { grid-template-columns:1fr; }
+  .preview-card { display:none; }
+  .steps-grid { grid-template-columns:1fr 1fr; }
+  .features-grid { grid-template-columns:1fr 1fr; }
+  .pricing-grid { grid-template-columns:1fr; max-width:380px; }
+  .chat-layout { grid-template-columns:1fr; }
+  .chat-sidebar { display:none; }
+  .portal-layout { grid-template-columns:1fr; }
+  .portal-side { display:none; }
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .foot-grid { grid-template-columns:1fr; gap:var(--s8); }
+}
+@media(max-width:767px) {
+  :root { --t-3xl:32px; --t-2xl:26px; }
+  .section { padding:var(--s8) var(--s6); }
+  .hero { padding:var(--s8) var(--s6); }
+  .topics-grid,.steps-grid,.features-grid { grid-template-columns:1fr; }
+  .lgrid { grid-template-columns:1fr; }
+  .tools-grid { grid-template-columns:1fr; }
+  .cta-band,footer { padding-left:var(--s6); padding-right:var(--s6); }
+  .lawyers-body { padding:var(--s6); }
+  .portal-main { padding:var(--s6); }
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .modal { border-radius:var(--r6); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav" role="navigation" aria-label="Ana menü">
+  <a class="nav-logo" onclick="go('landing')" tabindex="0" role="button">
+    <div class="nav-logo-mark">⚖️</div>
+    Cebindeki Avukat
+  </a>
+  <div class="nav-links" id="nav-links">
+    <span class="nav-link" onclick="go('chat')" tabindex="0" role="button">AI Chat</span>
+    <span class="nav-link" onclick="go('lawyers')" tabindex="0" role="button">Avukatlar</span>
+    <span class="nav-link" onclick="scrollSec('#steps')" tabindex="0" role="button">Nasıl Çalışır</span>
+    <span class="nav-link" onclick="scrollSec('#pricing')" tabindex="0" role="button">Fiyatlar</span>
+    <span class="nav-link" id="portal-link" style="display:none" onclick="go('portal')" tabindex="0" role="button">Panelim</span>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-user" id="nav-user-btn" onclick="go('auth')" tabindex="0" role="button">Giriş Yap</span>
+    <button class="btn btn-white btn-sm" onclick="go('auth')">Ücretsiz Başla</button>
+  </div>
+  <button id="nav-toggle" class="nav-toggle" onclick="toggleNav()" aria-label="Menüyü aç/kapat">☰</button>
+</nav>
+
+<!-- LANDING -->
+<div id="view-landing" class="view active" style="padding-top:var(--nav-h)">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Türkiye'nin İlk AI Hukuk Platformu</div>
+        <h1>Hukuki sorunlarınız için <em>akıllı</em> rehber</h1>
+        <p class="hero-sub">Yapay zeka ile saniyeler içinde hukuki yönlendirme alın. Gerektiğinde baro doğrulamalı uzman avukatlarla güvenle bağlanın.</p>
+        <div class="hero-actions">
+          <button class="btn btn-white" onclick="go('chat')">🤖 Ücretsiz Dene</button>
+          <button class="btn btn-ghost" onclick="go('lawyers')">Avukatları Gör →</button>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><div class="trust-icon">🔒</div>%100 KVKK Uyumlu</div>
+          <div class="trust-item"><div class="trust-icon">✅</div>Baro Doğrulamalı</div>
+          <div class="trust-item"><div class="trust-icon">⚡</div>5 Sn'de Yanıt</div>
+        </div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-bar">
+          <div class="preview-av">⚖️</div>
+          <div>
+            <div class="preview-bar-name">Cebindeki Avukat AI</div>
+            <div class="preview-bar-status">Çevrimiçi</div>
+          </div>
+        </div>
+        <div class="preview-body">
+          <div class="preview-bubble preview-user">Depozitom 3 aydır iade edilmiyor. Ne yapmalıyım?</div>
+          <div class="preview-bubble preview-ai"><strong>TBK Madde 342 kapsamında:</strong><br><br>1️⃣ Yazılı ihtarname gönderin<br>2️⃣ Kiraya verene 5 iş günü süre tanıyın<br>3️⃣ Yanıt yoksa → Sulh Hukuk Mahkemesi</div>
+          <div class="preview-cta">
+            <div class="preview-cta-t">⚖️ Uzman avukatla görüşmek ister misiniz?</div>
+            <button class="preview-cta-btn" onclick="go('lawyers')">Avukat Bul →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section">
+    <div class="section-tag">Hızlı Başlangıç</div>
+    <h2>Hangi konuda yardıma ihtiyacınız var?</h2>
+    <p class="section-desc">Konuya tıklayın — AI asistanınız hemen yanıtlamaya başlasın.</p>
+    <div class="topics-grid">
+      <button class="topic-btn" onclick="chatWith('Kiraya verenimi mahkemeye vermek istiyorum. Depozitom iade edilmedi.')"><div class="topic-emoji">🏠</div><div><div class="topic-name">Kira &amp; Depozito</div><div class="topic-hint">Fesih, iade, tahliye</div></div></button>
+      <button class="topic-btn" onclick="chatWith('İşten çıkarıldım. Kıdem ve ihbar tazminatı alabilir miyim?')"><div class="topic-emoji">💼</div><div><div class="topic-name">İş &amp; Tazminat</div><div class="topic-hint">Kıdem, ihbar, işe iade</div></div></button>
+      <button class="topic-btn" onclick="chatWith('Aldığım ürün bozuk çıktı, satıcı iade almıyor. Haklarım neler?')"><div class="topic-emoji">🛒</div><div><div class="topic-name">Tüketici Hakları</div><div class="topic-hint">İade, garanti, şikayet</div></div></button>
+      <button class="topic-btn" onclick="chatWith('Boşanma davası açmak istiyorum. Süreç nasıl işler?')"><div class="topic-emoji">👨‍👩‍👧</div><div><div class="topic-name">Aile &amp; Boşanma</div><div class="topic-hint">Nafaka, velayet, mal paylaşımı</div></div></button>
+      <button class="topic-btn" onclick="chatWith('İcra takibi başlatıldı. Nasıl itiraz edebilirim?')"><div class="topic-emoji">⚖️</div><div><div class="topic-name">İcra &amp; Alacak</div><div class="topic-hint">İtiraz, haciz, ödeme emri</div></div></button>
+      <button class="topic-btn" onclick="chatWith('Miras paylaşımında anlaşamıyoruz. Yasal haklarım neler?')"><div class="topic-emoji">📜</div><div><div class="topic-name">Miras Hukuku</div><div class="topic-hint">Paylar, vasiyetname, dava</div></div></button>
+    </div>
+  </div>
+
+  <div style="background:var(--b100);border-top:1.5px solid rgba(27,58,107,.12);border-bottom:1.5px solid rgba(27,58,107,.12);padding:var(--s10) var(--s8)" id="steps">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="section-tag">Nasıl Çalışır</div>
+      <h2>4 adımda hukuki destek</h2>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num-bg">1</div><div class="step-icon">✍️</div><h4>Sorunuzu Yazın</h4><p>Türkçe olarak hukuki durumunuzu anlatın. Kayıt gerekmez.</p></div>
+        <div class="step-card"><div class="step-num-bg">2</div><div class="step-icon">🤖</div><h4>AI Değerlendirme</h4><p>Saniyeler içinde kanun maddeleri ve sonraki adımlar.</p></div>
+        <div class="step-card"><div class="step-num-bg">3</div><div class="step-icon">⚖️</div><h4>Avukat Seçin</h4><p>Şeffaf fiyat, baro doğrulamalı uzman avukatlar.</p></div>
+        <div class="step-card"><div class="step-num-bg">4</div><div class="step-icon">📹</div><h4>Video Görüşme</h4><p>Platform içi güvenli görüşme. İyzico güvenceli ödeme.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">Özellikler</div>
+    <h2>Neden Cebindeki Avukat?</h2>
+    <div class="features-grid">
+      <div class="feature-card featured"><div class="feat-icon" style="background:rgba(255,255,255,.15)">⚖️</div><h4>Türk Hukukuna Özel AI</h4><p>TBK, TMK ve İş Kanunu'na göre eğitilmiş. Yalnızca Türkiye için.</p></div>
+      <div class="feature-card"><div class="feat-icon" style="background:var(--b100)">📹</div><h4>Güvenli Video Görüşme</h4><p>Platform içi şifreli video görüşme. Harici uygulama gerekmez.</p></div>
+      <div class="feature-card"><div class="feat-icon" style="background:#FEF3C7">📄</div><h4>Belge Oluşturma</h4><p>Kira, iş, hizmet sözleşmeleri ve dilekçeler. UYAP uyumlu PDF.</p></div>
+      <div class="feature-card"><div class="feat-icon" style="background:var(--ok-bg)">🔒</div><h4>%100 KVKK Uyumlu</h4><p>Verileriniz Türkiye'de şifreli saklanır. Tam gizlilik uyumu.</p></div>
+      <div class="feature-card"><div class="feat-icon" style="background:#FEF3C7">💳</div><h4>Şeffaf Fiyat</h4><p>Görüşme öncesi ücret nettir. Sürpriz fatura yok. İyzico ile güvenli ödeme.</p></div>
+      <div class="feature-card"><div class="feat-icon" style="background:var(--b100)">⚡</div><h4>7/24 Anında Yanıt</h4><p>Gece gündüz fark etmeksizin. AI asistanınız her zaman hazır.</p></div>
+    </div>
+  </div>
+
+  <div style="background:var(--b050);border-top:1.5px solid var(--n200);padding:var(--s10) var(--s8)" id="pricing">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="section-tag">Fiyatlandırma</div>
+      <h2>Herkes için uygun plan</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Bireysel</div><div class="price-amount">Ücretsiz</div><div class="price-period">Sonsuza kadar</div>
+          <div class="price-desc">Temel hukuki yönlendirme için ideal başlangıç noktası.</div>
+          <ul class="price-feats"><li>Ayda 5 AI sorusu</li><li>Temel değerlendirme raporu</li><li>Avukat profil görüntüleme</li><li>1 sözleşme şablonu</li></ul>
+          <button class="btn btn-outline btn-full" onclick="go('auth')">Ücretsiz Başla</button>
+        </div>
+        <div class="price-card pop">
+          <div class="price-badge">En Popüler</div><div class="price-tier">Pro</div><div class="price-amount">99 TRY</div><div class="price-period">/ ay</div>
+          <div class="price-desc">Sınırsız AI erişimi ve tüm belge araçları.</div>
+          <ul class="price-feats"><li>Sınırsız AI sorusu</li><li>Tüm sözleşme şablonları</li><li>Dilekçe + PDF çıktı</li><li>%10 rezervasyon indirimi</li><li>Öncelikli destek</li></ul>
+          <button class="btn btn-white btn-full" onclick="go('auth')">Pro'ya Geç</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Şirket</div><div class="price-amount" style="font-size:28px">2.500+ TRY</div><div class="price-period">/ ay</div>
+          <div class="price-desc">KOBİ ve kurumsal ekipler için eksiksiz çözüm.</div>
+          <ul class="price-feats"><li>Sınırsız kullanıcı</li><li>Öncelikli avukat eşleşmesi</li><li>Özel sözleşme kütüphanesi</li><li>API erişimi</li><li>Aylık hukuki rapor</li></ul>
+          <button class="btn btn-outline btn-full" onclick="showToast('Ekibimiz sizi arayacak!')">İletişime Geç</button>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:var(--t-xs);color:var(--n500);font-weight:300;margin-top:var(--s6)">⚠️ Avukat görüşmeleri ayrıca ücretlendirilir. Bu platform hukuki tavsiye vermez; yalnızca genel bilgilendirme amaçlıdır.</p>
+    </div>
+  </div>
+
+  <section class="cta-band">
+    <h2>Hukuki sorularınız cevapsız kalmasın</h2>
+    <p>Ücretsiz hesap oluşturun — kredi kartı gerekmez.</p>
+    <div class="cta-row">
+      <input class="input" id="cta-email" type="email" placeholder="E-posta adresiniz" aria-label="E-posta adresi">
+      <button class="btn btn-white" onclick="ctaGo()">Başla →</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div><div class="foot-logo"><div class="nav-logo-mark">⚖️</div>Cebindeki Avukat</div><p>Türkiye'nin yapay zeka destekli hukuk platformu. KVKK uyumlu, baro doğrulamalı avukatlar.</p></div>
+      <div class="foot-col"><h5>Platform</h5><a onclick="go('chat')">AI Chat</a><a onclick="go('lawyers')">Avukat Bul</a><a onclick="scrollSec('#pricing')">Fiyatlar</a><a onclick="go('auth')">Kayıt Ol</a></div>
+      <div class="foot-col"><h5>Hukuki</h5><a onclick="showToast('Yakında!')">Gizlilik Politikası</a><a onclick="showToast('Yakında!')">KVKK Aydınlatma Metni</a><a onclick="showToast('Yakında!')">Kullanım Koşulları</a><a onclick="showToast('Yakında!')">İletişim</a></div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-disclaimer">⚠️ Bu platform hukuki tavsiye vermez. Bilgiler yalnızca genel amaçlıdır. Bireysel durumunuz için lisanslı bir avukattan profesyonel destek alınız.</p>
+      <p>© 2026 Cebindeki Avukat</p>
+    </div>
+  </footer>
+</div>
+
+<!-- CHAT -->
+<div id="view-chat" class="view">
+  <div class="chat-layout">
+    <div class="chat-sidebar">
+      <div class="cs-head"><h4>AI Hukuk Asistanı</h4><button class="btn btn-primary btn-sm btn-full" onclick="newChat()" style="margin-top:var(--s4)">+ Yeni Sohbet</button></div>
+      <div class="cs-label">Konular</div>
+      <div class="cs-topics">
+        <div class="cs-topic on" data-topic="kira" onclick="pickTopic(this)"><span class="ti">🏠</span>Kira &amp; Depozito</div>
+        <div class="cs-topic" data-topic="is" onclick="pickTopic(this)"><span class="ti">💼</span>İş &amp; Tazminat</div>
+        <div class="cs-topic" data-topic="tuketici" onclick="pickTopic(this)"><span class="ti">🛒</span>Tüketici Hakları</div>
+        <div class="cs-topic" data-topic="aile" onclick="pickTopic(this)"><span class="ti">👨‍👩‍👧</span>Aile &amp; Boşanma</div>
+        <div class="cs-topic" data-topic="icra" onclick="pickTopic(this)"><span class="ti">⚖️</span>İcra &amp; Alacak</div>
+        <div class="cs-topic" data-topic="miras" onclick="pickTopic(this)"><span class="ti">📜</span>Miras</div>
+        <div class="cs-topic" data-topic="sozlesme" onclick="pickTopic(this)"><span class="ti">📄</span>Sözleşme Taslağı</div>
+        <div class="cs-topic" data-topic="sirket" onclick="pickTopic(this)"><span class="ti">🏢</span>Şirket &amp; Ticaret</div>
+      </div>
+      <div class="cs-foot"><div class="cs-notice">✅ Bu platform hukuki tavsiye vermez. Yanıtlar genel bilgi amaçlıdır. Bireysel konular için avukata danışın.</div></div>
+    </div>
+    <div class="chat-main">
+      <div class="chat-topbar"><button onclick="go('landing')" style="background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--n500);padding:0 var(--s4) 0 0;line-height:1" aria-label="Geri">←</button><div class="ctb-info"><h4>Cebindeki Avukat AI</h4><p>Türk hukukuna göre genel bilgi ve yönlendirme</p></div><div class="online-badge" id="ai-status">Çevrimiçi</div></div>
+      <div class="msgs" id="msgs" role="log" aria-live="polite">
+        <div class="msg-row a"><div class="msg-av a-av">⚖</div><div class="msg-body"><div class="bubble">Merhaba! 👋 Ben Cebindeki Avukat AI asistanınızım.<br><br>Türk hukukuna göre hukuki sorularınızı yanıtlamak ve sizi doğru yönlendirmek için buradayım.<br><br>Nasıl yardımcı olabilirim?</div><div class="msg-time" id="init-time"></div></div></div>
+      </div>
+      <div class="qp-bar" id="qp-bar">
+        <span class="qp-chip" onclick="useChip('Kiraya verenimi mahkemeye vermek istiyorum')">🏠 Kira sorunu</span>
+        <span class="qp-chip" onclick="useChip('İşten çıkarıldım tazminat hakkım var mı?')">💼 Tazminat</span>
+        <span class="qp-chip" onclick="useChip('İhtarname nasıl yazılır?')">📄 İhtarname</span>
+        <span class="qp-chip" onclick="useChip('Boşanma davası nasıl açılır?')">👨‍👩‍👧 Boşanma</span>
+        <span class="qp-chip" onclick="useChip('İcra takibine nasıl itiraz ederim?')">⚖️ İcra itirazı</span>
+      </div>
+      <div class="input-bar">
+        <textarea id="chat-input" class="chat-textarea" placeholder="Hukuki sorunuzu buraya yazın..." rows="1" oninput="growTA(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}" aria-label="Mesaj yazın"></textarea>
+        <button class="send-btn" id="send-btn" onclick="sendMsg()" aria-label="Gönder">↑</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAWYERS -->
+<div id="view-lawyers" class="view" style="padding-top:var(--nav-h)">
+  <div class="lawyers-hero"><div class="lawyers-hero-inner"><button onclick="go('landing')" style="background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);color:white;border-radius:10px;padding:8px 16px;cursor:pointer;font-family:Lexend,sans-serif;font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:6px">← Geri</button><div><h1>Uzman Avukatlar</h1><p>Tüm avukatlarımız baro kaydı doğrulanmış ve platform onaylıdır.</p></div><button class="btn btn-white" onclick="go('chat')">🤖 Önce AI'ya Sor</button></div></div>
+  <div class="lawyers-body">
+    <div class="filter-bar">
+      <button class="filter-pill on" onclick="filterLawyers('all',this)">Tümü</button>
+      <button class="filter-pill" onclick="filterLawyers('kira',this)">🏠 Kira</button>
+      <button class="filter-pill" onclick="filterLawyers('is',this)">💼 İş</button>
+      <button class="filter-pill" onclick="filterLawyers('aile',this)">👨‍👩‍👧 Aile</button>
+      <button class="filter-pill" onclick="filterLawyers('tuketici',this)">🛒 Tüketici</button>
+      <button class="filter-pill" onclick="filterLawyers('icra',this)">⚖️ İcra</button>
+      <button class="filter-pill" onclick="filterLawyers('ticaret',this)">🏢 Ticaret</button>
+    </div>
+    <div class="lgrid" id="lgrid"></div>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div id="view-auth" class="view">
+  <div class="auth-screen" style="position:relative">
+    <div style="position:absolute;top:20px;left:20px"><button onclick="go('landing')" style="background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);color:white;border-radius:10px;padding:8px 16px;cursor:pointer;font-family:Lexend,sans-serif;font-size:.85rem;font-weight:600">← Geri</button></div><div class="auth-card">
+      <div class="auth-logo"><div class="auth-logo-mark">⚖️</div><span class="auth-logo-text">Cebindeki Avukat</span></div>
+      <p class="auth-sub">Hukuki rehberinize hoş geldiniz</p>
+      <div class="auth-tabs">
+        <button class="auth-tab on" onclick="authTab('login',this)">Giriş Yap</button>
+        <button class="auth-tab" onclick="authTab('register',this)">Kayıt Ol</button>
+        <button class="auth-tab" onclick="authTab('lawyer',this)">Avukat</button>
+      </div>
+      <div id="af-login">
+        <div class="field" style="margin-bottom:var(--s5)"><label class="label" for="l-email">E-posta</label><input class="input" id="l-email" type="email" placeholder="ornek@mail.com" autocomplete="email"></div>
+        <div class="field" style="margin-bottom:var(--s6)"><label class="label" for="l-pass">Şifre</label><input class="input" id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+        <button class="btn btn-primary btn-full" onclick="doLogin()" style="margin-bottom:var(--s4)">Giriş Yap</button>
+        <button class="btn btn-outline btn-full" onclick="demoLogin()">Demo Hesabıyla Dene</button>
+        <p style="text-align:center;margin-top:var(--s6);font-size:var(--t-sm);color:var(--n500)">Hesabınız yok mu? <a style="color:var(--b800);cursor:pointer;font-weight:600" onclick="authTab('register',null)">Kayıt olun</a></p>
+      </div>
+      <div id="af-register" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s5)">
+          <div class="field"><label class="label" for="r-name">Ad</label><input class="input" id="r-name" type="text" placeholder="Adınız" autocomplete="given-name"></div>
+          <div class="field"><label class="label" for="r-sname">Soyad</label><input class="input" id="r-sname" type="text" placeholder="Soyadınız" autocomplete="family-name"></div>
+        </div>
+        <div class="field" style="margin-bottom:var(--s5)"><label class="label" for="r-email">E-posta</label><input class="input" id="r-email" type="email" placeholder="ornek@mail.com" autocomplete="email"></div>
+        <div class="field" style="margin-bottom:var(--s5)"><label class="label" for="r-pass">Şifre</label><input class="input" id="r-pass" type="password" placeholder="En az 6 karakter" autocomplete="new-password"></div>
+        <label style="display:flex;gap:var(--s3);align-items:flex-start;font-size:var(--t-sm);color:var(--n700);margin-bottom:var(--s6);cursor:pointer;line-height:1.55;font-weight:300">
+          <input type="checkbox" id="kvkk-cb" style="width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--b800)">
+          KVKK Aydınlatma Metni kapsamında kişisel verilerimin işlenmesine onay veriyorum. Bu platform hukuki tavsiye vermez.
+        </label>
+        <button class="btn btn-primary btn-full" onclick="doRegister()">Kayıt Ol</button>
+        <p style="text-align:center;margin-top:var(--s6);font-size:var(--t-sm);color:var(--n500)">Zaten üye misiniz? <a style="color:var(--b800);cursor:pointer;font-weight:600" onclick="authTab('login',null)">Giriş yapın</a></p>
+      </div>
+      <div id="af-lawyer" style="display:none">
+        <div style="background:var(--b100);border:1.5px solid rgba(27,58,107,.2);border-radius:var(--r4);padding:var(--s5);margin-bottom:var(--s6);font-size:var(--t-sm);font-weight:400;color:var(--b800);line-height:1.6">⚖️ Avukat girişi için baro onayı gereklidir. İlk kez katılıyorsanız baro numaranız 24–48 saat içinde doğrulanacaktır.</div>
+        <div class="field" style="margin-bottom:var(--s5)"><label class="label" for="lw-email">E-posta</label><input class="input" id="lw-email" type="email" placeholder="avukat@baro.com"></div>
+        <div class="field" style="margin-bottom:var(--s6)"><label class="label" for="lw-pass">Şifre</label><input class="input" id="lw-pass" type="password" placeholder="••••••••"></div>
+        <button class="btn btn-primary btn-full" onclick="lawyerLogin()" style="margin-bottom:var(--s4)">Avukat Girişi</button>
+        <button class="btn btn-outline btn-full" onclick="showToast('Kayıt formu yakında aktif olacak!')">Yeni Avukat Kaydı →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL -->
+<div id="view-portal" class="view">
+  <div class="portal-layout">
+    <div class="portal-side">
+      <div class="portal-brand"><div class="portal-brand-t">Avukat Paneli</div><div class="portal-brand-n" id="portal-lawyer-name">Av. Demo</div></div>
+      <div class="portal-grp">Ana Menü</div>
+      <div class="portal-item on" onclick="portalTab('dash',this)"><span class="portal-item-icon">📊</span>Dashboard</div>
+      <div class="portal-item" onclick="portalTab('bk',this)"><span class="portal-item-icon">📅</span>Görüşmeler</div>
+      <div class="portal-item" onclick="portalTab('tools',this)"><span class="portal-item-icon">🤖</span>AI Araçları</div>
+      <div class="portal-grp">Hesabım</div>
+      <div class="portal-item" onclick="portalTab('prof',this)"><span class="portal-item-icon">👤</span>Profilim</div>
+      <div class="portal-item" onclick="portalTab('earn',this)"><span class="portal-item-icon">💰</span>Kazançlarım</div>
+      <div class="portal-item" onclick="go('landing')"><span class="portal-item-icon">🏠</span>Ana Sayfa</div><div class="portal-item" onclick="doLogout()"><span class="portal-item-icon">🚪</span>Çıkış Yap</div>
+    </div>
+    <div class="portal-main">
+      <div class="psec on" id="ps-dash">
+        <div class="psec-head"><h2>Dashboard</h2><span class="chip chip-ok">● Profil Aktif</span></div>
+        <div style="background:var(--b800);border-radius:var(--r5);padding:var(--s7);margin-bottom:var(--s7);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s5)">
+          <div><div style="font-size:var(--t-xs);font-weight:500;color:rgba(255,255,255,.5);margin-bottom:var(--s2)">Bugün</div><div style="font-family:'Source Serif 4',serif;font-size:var(--t-xl);font-weight:700;color:var(--white)">Görüşme bekleniyor</div><div style="font-size:var(--t-sm);font-weight:300;color:rgba(255,255,255,.55);margin-top:var(--s2)">Müsait saatlerinizi profilinizden ekleyin</div></div>
+          <button class="btn btn-white btn-sm" onclick="portalTab('prof',document.querySelectorAll('.portal-item')[3])">Takvim Ayarla</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-val">0</div><div class="stat-lbl">Toplam Görüşme</div></div>
+          <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-val">0 TRY</div><div class="stat-lbl">Bu Ay Kazanç</div></div>
+          <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-val">—</div><div class="stat-lbl">Değerlendirme</div></div>
+          <div class="stat-card"><div class="stat-icon">👁️</div><div class="stat-val">Aktif</div><div class="stat-lbl">Profil Durumu</div></div>
+        </div>
+        <h3 style="margin-bottom:var(--s5);font-size:var(--t-lg)">Yaklaşan Görüşmeler</h3>
+        <div class="empty-state">📅 Henüz görüşme yok.<br>Profilinizi tamamlayın ve müsait saatlerinizi ekleyin.</div>
+      </div>
+      <div class="psec" id="ps-bk"><div class="psec-head"><h2>Görüşmelerim</h2></div><div class="empty-state">Henüz görüşme bulunmuyor.</div></div>
+      <div class="psec" id="ps-tools">
+        <div class="psec-head"><h2>AI Araçları</h2><span class="chip chip-warn">Beta</span></div>
+        <div class="tools-grid">
+          <div class="tool-card" onclick="openTool('sozlesme')"><div class="tool-card-icon">📝</div><h4>Sözleşme Taslağı</h4><p>Kira, iş, hizmet, NDA için AI destekli profesyonel taslak oluşturun.</p></div>
+          <div class="tool-card" onclick="openTool('dilekce')"><div class="tool-card-icon">⚖️</div><h4>Dilekçe Hazırla</h4><p>Mahkeme dilekçesi, ihtarname ve hukuki metinler.</p></div>
+          <div class="tool-card" onclick="openTool('ictihat')"><div class="tool-card-icon">🔍</div><h4>İçtihat Ara</h4><p>Yargıtay kararlarında AI ile hızlı arama yapın.</p></div>
+          <div class="tool-card" onclick="openTool('ozet')"><div class="tool-card-icon">📋</div><h4>Dava Özeti</h4><p>Uzun dava dosyalarını yapay zeka ile özetleyin.</p></div>
+        </div>
+        <div class="tool-output" id="tool-output">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s6)"><h3 id="tool-title" style="font-size:var(--t-lg)">Araç</h3><button class="btn btn-outline btn-sm" onclick="closeTool()">✕ Kapat</button></div>
+          <div class="field" style="margin-bottom:var(--s5)"><label class="label" id="tool-label">Bilgileri girin</label><textarea class="textarea" id="tool-input" rows="4" placeholder="Gerekli bilgileri buraya yazın..."></textarea></div>
+          <button class="btn btn-primary" onclick="runTool()" id="tool-run-btn">🤖 Oluştur</button>
+          <div class="tool-result" id="tool-result"></div>
+        </div>
+      </div>
+      <div class="psec" id="ps-prof">
+        <div class="psec-head"><h2>Profilim</h2></div>
+        <div class="card">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-bottom:var(--s5)">
+            <div class="field"><label class="label" for="p-name">Ad Soyad</label><input class="input" id="p-name" placeholder="Av. Ad Soyad"></div>
+            <div class="field"><label class="label" for="p-baro">Baro No</label><input class="input" id="p-baro" placeholder="IST-12345"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-bottom:var(--s5)">
+            <div class="field"><label class="label" for="p-city">Şehir</label><select class="select" id="p-city"><option>İstanbul</option><option>Ankara</option><option>İzmir</option><option>Bursa</option><option>Antalya</option><option>Diğer</option></select></div>
+            <div class="field"><label class="label" for="p-price">30 dk Ücret (TRY)</label><input class="input" id="p-price" type="number" placeholder="1500"></div>
+          </div>
+          <div class="field" style="margin-bottom:var(--s5)"><label class="label" for="p-spec">Uzmanlık Alanları (virgülle ayırın)</label><input class="input" id="p-spec" placeholder="Kira Hukuku, İş Hukuku"></div>
+          <div class="field" style="margin-bottom:var(--s5)"><label class="label" for="p-bio">Kısa Biyografi</label><textarea class="textarea" id="p-bio" rows="3" placeholder="Kendinizi kısaca tanıtın..."></textarea></div>
+          <div class="field" style="margin-bottom:var(--s7)"><label class="label" for="p-iban">IBAN (Ödemeler için)</label><input class="input" id="p-iban" placeholder="TR00 0000 0000 0000 0000 0000 00"></div>
+          <button class="btn btn-primary" onclick="saveProfile()">💾 Profili Kaydet</button>
+        </div>
+      </div>
+      <div class="psec" id="ps-earn">
+        <div class="psec-head"><h2>Kazançlarım</h2></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-bottom:var(--s7)">
+          <div class="card"><div style="font-size:var(--t-xs);font-weight:500;color:var(--n500);margin-bottom:var(--s3)">Bu Ay Toplam</div><div style="font-family:'Source Serif 4',serif;font-size:36px;font-weight:700;color:var(--b900)">0 TRY</div></div>
+          <div class="card card-blue"><div style="font-size:var(--t-xs);font-weight:500;color:var(--b800);margin-bottom:var(--s3)">Bir Sonraki Ödeme</div><div style="font-family:'Source Serif 4',serif;font-size:36px;font-weight:700;color:var(--b800)">0 TRY</div></div>
+        </div>
+        <div class="empty-state">📊 Kazanç geçmişi ilk görüşmeden sonra burada görünecek.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="overlay" id="bk-overlay" onclick="overlayClick(event)" role="dialog" aria-modal="true" aria-label="Görüşme Rezervasyonu">
+  <div class="modal">
+    <div class="modal-head"><h3>Görüşme Rezervasyonu</h3><button class="modal-close" onclick="closeBk()" aria-label="Kapat">✕</button></div>
+    <div class="modal-lawyer" id="modal-lawyer-info"></div>
+    <div class="field" style="margin-bottom:var(--s4)"><label class="label">Uygun Zaman Seçin</label></div>
+    <div class="slots-grid" id="slots-grid"></div>
+    <div class="price-sum" id="price-summary"></div>
+    <button class="btn btn-primary btn-full" id="confirm-btn" onclick="confirmBooking()" disabled>Bir zaman seçin</button>
+    <p style="text-align:center;font-size:var(--t-xs);font-weight:300;color:var(--n500);margin-top:var(--s5)">İptal: görüşmeden 24 saat önceye kadar ücretsiz. Ödeme İyzico güvenceli.</p>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-screen" id="success-screen" role="alert">
+  <div class="success-icon">🎉</div>
+  <h2>Rezervasyon Alındı!</h2>
+  <p id="success-msg">Görüşmeniz planlandı. Video görüşme linki ve ödeme detayları e-posta adresinize gönderilecek.</p>
+  <button class="btn btn-white" onclick="closeSuccess()">Ana Sayfaya Dön</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast-el" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+
+/* DATA */
+const LAWYERS = [
+  { id:'l1', name:'Av. Ayşe Kaya', city:'İstanbul', exp:'8 yıl', rating:4.9, reviews:127, price:1500, specs:['Kira','İş','Tüketici'], tags:['kira','is','tuketici'], color:'#1B3A6B', av:true },
+  { id:'l2', name:'Av. Mehmet Taş', city:'İstanbul', exp:'12 yıl', rating:4.7, reviews:89, price:1200, specs:['İcra','Alacak','Ticaret'], tags:['icra','ticaret'], color:'#14532D', av:true },
+  { id:'l3', name:'Av. Selin Arslan', city:'Ankara', exp:'15 yıl', rating:5.0, reviews:203, price:1800, specs:['Aile','Boşanma','Miras'], tags:['aile'], color:'#4C1D95', av:true },
+  { id:'l4', name:'Av. Can Demir', city:'İzmir', exp:'5 yıl', rating:4.8, reviews:64, price:1000, specs:['Tüketici','Kira'], tags:['tuketici','kira'], color:'#7F1D1D', av:true },
+  { id:'l5', name:'Av. Zeynep Yıldız', city:'İstanbul', exp:'10 yıl', rating:4.9, reviews:156, price:2000, specs:['Ticaret','Şirket','Sözleşme'], tags:['ticaret'], color:'#1E3A5F', av:false },
+  { id:'l6', name:'Av. Bora Şahin', city:'Bursa', exp:'7 yıl', rating:4.6, reviews:48, price:900, specs:['İş','Tazminat'], tags:['is'], color:'#064E3B', av:true },
+];
+
+const TOPIC_MAP = {
+  kira:'Kira hukuku hakkında bilgi almak istiyorum. Depozito ve kira sözleşmesi sorunları.',
+  is:'İş hukuku ve tazminat hakları hakkında bilgi almak istiyorum.',
+  tuketici:'Tüketici hakları hakkında bilgi almak istiyorum.',
+  aile:'Aile hukuku, boşanma ve nafaka süreci hakkında bilgi almak istiyorum.',
+  icra:'İcra takibi ve alacak hukuku hakkında bilgi almak istiyorum.',
+  miras:'Miras hukuku ve miras paylaşımı hakkında bilgi almak istiyorum.',
+  sozlesme:'Sözleşme taslağı hazırlamam için yardıma ihtiyacım var.',
+  sirket:'Şirket ve ticaret hukuku hakkında bilgi almak istiyorum.',
+};
+
+const DEMO_REPLIES = {
+  kira:`**Kira Hukuku — TBK Madde 342:**\n\n1️⃣ **Yazılı ihtarname** gönderin\n → Noterden veya iadeli taahhütlü posta ile\n → 5 iş günü süre tanıyın\n\n2️⃣ Yanıt yoksa → **Sulh Hukuk Mahkemesi**\n\nGerekli belgeler:\n• Kira sözleşmesi\n• Ödeme makbuzları\n• İhtarname tebligatı\n\n⚠️ Bu bilgi yalnızca genel amaçlıdır. Bireysel durumunuz için bir avukattan profesyonel destek alınız.`,
+  is:`**İş Hukuku — Tazminat Hakları:**\n\n**Kıdem Tazminatı:**\n• Minimum **1 yıl** çalışma şartı\n• Her yıl için **30 günlük brüt maaş**\n\n**İhbar Tazminatı:**\n• 0–6 ay → 2 hafta\n• 6–18 ay → 4 hafta\n• 18–36 ay → 6 hafta\n• 36+ ay → 8 hafta\n\n⚠️ Bu bilgi yalnızca genel amaçlıdır. Bireysel durumunuz için bir avukattan profesyonel destek alınız.`,
+  aile:`**Aile Hukuku — Boşanma (TMK Madde 166):**\n\n**Anlaşmalı Boşanma:**\n• En az **1 yıllık** evlilik şartı\n• Ortak protokol (velayet, nafaka, mal)\n• Aile Mahkemesi'ne başvuru\n• Süre: **1–3 ay**\n\n**Masraflar:**\n• Harç: ~500–2.000 TRY\n• Avukat (isteğe bağlı)\n\n⚠️ Bu bilgi yalnızca genel amaçlıdır. Bireysel durumunuz için bir avukattan profesyonel destek alınız.`,
+  genel:`Sorunuzu aldım. Türk hukuku kapsamında genel değerlendirmem:\n\n1️⃣ **Yazılı başvuru** veya ihtarname yapın\n2️⃣ İlgili **yasal süreleri** takip edin\n3️⃣ Belgelerinizi **muhafaza edin**\n4️⃣ Gerekirse ilgili **mahkemeye başvurun**\n\nBu konu için alanında uzman bir avukattan destek almanızı öneririm.\n\n⚠️ Bu bilgi yalnızca genel amaçlıdır. Bireysel durumunuz için bir avukattan profesyonel destek alınız.`,
+};
+
+const SYSTEM_PROMPT = `Sen "Cebindeki Avukat" platformunun yapay zeka hukuk asistanısın.
+GÖREVIN: Türk hukukuna göre genel bilgi ve yönlendirme sunmak.
+KURALLAR:
+1. Asla "hukuki tavsiye" verme — sadece "genel bilgi" sun
+2. Madde madde, kısa ve anlaşılır yanıtla
+3. Kanun maddesi belirt (TBK m.342 gibi)
+4. Her yanıt sonuna: "⚠️ Bu bilgi yalnızca genel amaçlıdır. Bireysel durumunuz için bir avukattan profesyonel destek alınız."
+5. Dava sonucu tahmini yapma`;
+
+/* STATE */
+const S = { user:null, isLawyer:false, chatHistory:[], apiKey:'', selSlot:null, selLawyer:null };
+
+/* NAVIGATION */
+function showView(view) {
+  // Show correct view
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const el = document.getElementById('view-' + view);
+  if (el) { el.classList.add('active'); window.scrollTo(0, 0); }
+  // Hide nav on auth
+  const nav = document.getElementById('main-nav');
+  if (nav) nav.style.display = view === 'auth' ? 'none' : '';
+}
+
+function go(view) {
+  // Push current page to history BEFORE switching
+  // This allows browser back to return here
+  history.pushState({ view: view }, '', '#' + view);
+  showView(view);
+}
+
+// Browser back / forward button
+window.addEventListener('popstate', function(e) {
+  const view = (e.state && e.state.view) ? e.state.view : 'landing';
+  showView(view);
+});
+
+// On first page load — set initial history entry
+document.addEventListener('DOMContentLoaded', function() {
+  const hash = window.location.hash.replace('#', '');
+  const startView = (hash && document.getElementById('view-' + hash)) ? hash : 'landing';
+  // Replace current history entry with landing (no duplicate)
+  history.replaceState({ view: startView }, '', '#' + startView);
+  showView(startView);
+});
+
+function scrollSec(selector) {
+  go('landing');
+  setTimeout(() => { const el = document.querySelector(selector); if (el) el.scrollIntoView({ behavior:'smooth', block:'start' }); }, 150);
+}
+
+function toggleNav() {
+  const links = document.getElementById('nav-links');
+  if (links.style.display === 'flex') { links.style.display = ''; }
+  else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--b800);padding:8px;z-index:400;'; }
+}
+
+/* AUTH */
+function authTab(tab, btn) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('on'));
+  if (btn) { btn.classList.add('on'); }
+  else { document.querySelectorAll('.auth-tab').forEach((t,i) => { if (['login','register','lawyer'][i] === tab) t.classList.add('on'); }); }
+  ['login','register','lawyer'].forEach(k => { document.getElementById('af-' + k).style.display = k === tab ? 'block' : 'none'; });
+}
+
+function doLogin() {
+  const email = document.getElementById('l-email').value.trim();
+  const pass = document.getElementById('l-pass').value;
+  if (!email || !pass) return showToast('E-posta ve şifre gereklidir');
+  S.user = { name:email.split('@')[0], email, type:'user' };
+  S.isLawyer = false;
+  afterLogin();
+}
+
+function demoLogin() {
+  S.user = { name:'Demo Kullanıcı', email:'demo@test.com', type:'user' };
+  S.isLawyer = false;
+  afterLogin();
+}
+
+function doRegister() {
+  const name = document.getElementById('r-name').value.trim();
+  const sname = document.getElementById('r-sname').value.trim();
+  const email = document.getElementById('r-email').value.trim();
+  const pass = document.getElementById('r-pass').value;
+  const kvkk = document.getElementById('kvkk-cb').checked;
+  if (!name || !email || !pass) return showToast('Tüm alanlar zorunludur');
+  if (!kvkk) return showToast('KVKK onayı zorunludur');
+  if (pass.length < 6) return showToast('Şifre en az 6 karakter olmalıdır');
+  S.user = { name:name + ' ' + sname, email, type:'user' };
+  S.isLawyer = false;
+  afterLogin();
+}
+
+function lawyerLogin() {
+  const email = document.getElementById('lw-email').value.trim();
+  const pass = document.getElementById('lw-pass').value;
+  if (!email || !pass) return showToast('E-posta ve şifre gereklidir');
+  S.user = { name:'Av. Demo', email, type:'lawyer' };
+  S.isLawyer = true;
+  document.getElementById('portal-lawyer-name').textContent = S.user.name;
+  document.getElementById('portal-link').style.display = 'inline';
+  afterLogin();
+  go('portal');
+}
+
+function afterLogin() {
+  const btn = document.getElementById('nav-user-btn');
+  btn.textContent = S.user.name.slice(0,14);
+  btn.onclick = () => go(S.isLawyer ? 'portal' : 'chat');
+  if (!S.isLawyer) go('chat');
+  showToast('Hoş geldiniz! 👋');
+}
+
+function doLogout() {
+  S.user = null; S.isLawyer = false;
+  const btn = document.getElementById('nav-user-btn');
+  btn.textContent = 'Giriş Yap';
+  btn.onclick = () => go('auth');
+  document.getElementById('portal-link').style.display = 'none';
+  go('landing');
+  showToast('Çıkış yapıldı');
+}
+
+/* CHAT */
+function nowTime() { const t = new Date(); return String(t.getHours()).padStart(2,'0') + ':' + String(t.getMinutes()).padStart(2,'0'); }
+
+function growTA(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 120) + 'px'; }
+
+function newChat() {
+  S.chatHistory = [];
+  document.getElementById('msgs').innerHTML = `<div class="msg-row a"><div class="msg-av a-av">⚖</div><div class="msg-body"><div class="bubble">Merhaba! 👋 Yeni sohbet başlatıldı.<br>Hukuki sorunuzu yazabilirsiniz.</div><div class="msg-time">${nowTime()}</div></div></div>`;
+  document.getElementById('qp-bar').style.display = 'flex';
+}
+
+function pickTopic(el) {
+  document.querySelectorAll('.cs-topic').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  const topic = el.dataset.topic;
+  if (TOPIC_MAP[topic]) { document.getElementById('chat-input').value = TOPIC_MAP[topic]; sendMsg(); }
+}
+
+function chatWith(text) { go('chat'); setTimeout(() => { document.getElementById('chat-input').value = text; sendMsg(); }, 280); }
+
+function useChip(text) { document.getElementById('chat-input').value = text; document.getElementById('qp-bar').style.display = 'none'; sendMsg(); }
+
+function appendMsg(role, text) {
+  const msgs = document.getElementById('msgs');
+  const div = document.createElement('div');
+  div.className = 'msg-row ' + role;
+  const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  const avClass = role === 'a' ? 'a-av' : 'u-av';
+  const avText = role === 'a' ? '⚖' : (S.user?.name?.[0] || 'U');
+  div.innerHTML = `<div class="msg-av ${avClass}">${avText}</div><div class="msg-body"><div class="bubble">${formatted}</div><div class="msg-time">${nowTime()}</div></div>`;
+  msgs.appendChild(div);
+  scrollMsgs();
+  return div;
+}
+
+function appendTyping() {
+  const msgs = document.getElementById('msgs');
+  const div = document.createElement('div');
+  div.className = 'msg-row a';
+  div.innerHTML = `<div class="msg-av a-av">⚖</div><div class="msg-body"><div class="typing-bubble"><span></span><span></span><span></span></div></div>`;
+  msgs.appendChild(div);
+  scrollMsgs();
+  return div;
+}
+
+function appendLawyerNudge() {
+  const msgs = document.getElementById('msgs');
+  const div = document.createElement('div');
+  div.className = 'lawyer-suggest';
+  div.innerHTML = `<h4>⚖️ Uzman Avukata Bağlanın</h4><p>Bu konu için profesyonel destek almanızı öneririz. Platform güvencesiyle.</p><button class="btn btn-primary btn-sm" onclick="go('lawyers')">Avukat Bul →</button>`;
+  msgs.appendChild(div);
+  scrollMsgs();
+}
+
+function scrollMsgs() { const msgs = document.getElementById('msgs'); requestAnimationFrame(() => { msgs.scrollTop = msgs.scrollHeight; }); }
+
+async function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('send-btn').disabled = true;
+  document.getElementById('qp-bar').style.display = 'none';
+  document.getElementById('ai-status').textContent = 'Yanıt yazıyor...';
+  appendMsg('u', text);
+  S.chatHistory.push({ role:'user', content:text });
+  const typing = appendTyping();
+  try {
+    let reply;
+    if (S.apiKey) { reply = await callClaude(text); }
+    else { await new Promise(r => setTimeout(r, 700 + Math.random() * 600)); reply = getDemoReply(text); }
+    typing.remove();
+    appendMsg('a', reply);
+    S.chatHistory.push({ role:'assistant', content:reply });
+    const needsLawyer = /avukat|mahkeme|dava|icra|tazminat|tahliye/i.test(text + reply);
+    if (needsLawyer) { setTimeout(appendLawyerNudge, 400); }
+  } catch (err) {
+    typing.remove();
+    const errText = String(err.message).includes('401')
+      ? '❌ API key geçersiz. Lütfen geçerli bir Anthropic API key girin.'
+      : '❌ Bağlantı hatası. Lütfen tekrar deneyin.';
+    appendMsg('a', errText);
+  }
+  document.getElementById('send-btn').disabled = false;
+  document.getElementById('ai-status').textContent = 'Çevrimiçi';
+}
+
+async function callClaude(userText) {
+  const messages = [...S.chatHistory.slice(-8), { role:'user', content:userText }];
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers: { 'Content-Type':'application/json', 'x-api-key':S.apiKey, 'anthropic-version':'2023-06-01', 'anthropic-dangerous-direct-browser-access':'true' },
+    body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:800, system:SYSTEM_PROMPT, messages }),
+  });
+  if (!res.ok) throw new Error(String(res.status));
+  const data = await res.json();
+  return data.content[0].text;
+}
+
+function getDemoReply(text) {
+  const t = text.toLowerCase();
+  if (t.includes('kira') || t.includes('depozito') || t.includes('ev')) return DEMO_REPLIES.kira;
+  if (t.includes('tazminat') || t.includes('işten') || t.includes('kıdem')) return DEMO_REPLIES.is;
+  if (t.includes('boşan') || t.includes('nafaka') || t.includes('aile')) return DEMO_REPLIES.aile;
+  return DEMO_REPLIES.genel;
+}
+
+/* LAWYERS */
+function renderLawyers(filter) {
+  const grid = document.getElementById('lgrid');
+  const list = filter === 'all' ? LAWYERS : LAWYERS.filter(l => l.tags.includes(filter));
+  if (list.length === 0) { grid.innerHTML = '<p style="color:var(--n500);padding:var(--s8);text-align:center">Bu filtre için avukat bulunamadı.</p>'; return; }
+  grid.innerHTML = list.map(l => `
+    <div class="lcard" onclick="openBooking('${l.id}')">
+      <div class="lcard-top">
+        <div class="lcard-av" style="background:${l.color}">${l.name.split(' ').map(w=>w[0]).join('').slice(1,3)}</div>
+        <div class="lcard-info">
+          <div class="lcard-name">${l.name}</div>
+          <div class="lcard-loc">📍 ${l.city} · ${l.exp} deneyim</div>
+          <div class="lcard-rating">⭐ ${l.rating} <span style="font-size:var(--t-xs);color:var(--n500);font-weight:300">(${l.reviews} değerlendirme)</span></div>
+          <div class="lcard-verified">✓ Baro Onaylı</div>
+        </div>
+        <div style="text-align:right"><span class="lcard-avail ${l.av?'av-yes':'av-no'}">${l.av?'● Bugün Müsait':'○ Meşgul'}</span></div>
+      </div>
+      <div class="lcard-tags">${l.specs.map(s=>`<span class="lcard-tag">${s}</span>`).join('')}</div>
+      <div class="lcard-footer">
+        <div><div class="lcard-price-num">${l.price.toLocaleString('tr-TR')} TRY</div><div class="lcard-price-period">/ 30 dakika</div></div>
+        <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openBooking('${l.id}')">Rezervasyon →</button>
+      </div>
+    </div>`).join('');
+}
+
+function filterLawyers(filter, btn) {
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on');
+  renderLawyers(filter);
+}
+
+/* BOOKING */
+function openBooking(lawyerId) {
+  const l = LAWYERS.find(x => x.id === lawyerId);
+  if (!l) return;
+  S.selLawyer = l; S.selSlot = null;
+  document.getElementById('modal-lawyer-info').innerHTML = `
+    <div class="lcard-av" style="background:${l.color};width:52px;height:52px;font-size:16px;flex-shrink:0">${l.name.split(' ').map(w=>w[0]).join('').slice(1,3)}</div>
+    <div><div style="font-size:var(--t-md);font-weight:600;color:var(--b900)">${l.name}</div><div style="font-size:var(--t-sm);color:var(--n500);font-weight:300;margin-top:2px">${l.specs.join(' · ')}</div><div style="font-size:var(--t-sm);font-weight:600;color:#B45309;margin-top:4px">⭐ ${l.rating} · ${l.reviews} değerlendirme</div></div>`;
+  const today = new Date();
+  const slots = [];
+  for (let d = 1; d <= 4; d++) {
+    const day = new Date(today); day.setDate(today.getDate() + d);
+    const dateStr = day.toLocaleDateString('tr-TR',{weekday:'short',day:'numeric',month:'short'});
+    const times = d <= 2 ? ['10:00','14:00'] : ['10:00','13:30','16:00'];
+    times.forEach(t => slots.push({ id:`${d}_${t}`, date:dateStr, time:t }));
+  }
+  document.getElementById('slots-grid').innerHTML = slots.map(s => `<div class="slot" id="slot-${s.id}" onclick="selectSlot('${s.id}','${s.date}','${s.time}')"><div class="slot-time">${s.time}</div><div class="slot-date">${s.date}</div></div>`).join('');
+  document.getElementById('price-summary').innerHTML = `<div class="price-row"><span>Görüşme süresi</span><span>30 dakika</span></div><div class="price-row"><span>Video görüşme</span><span>✓ Dahil</span></div><div class="price-row"><span>Platform güvencesi</span><span>✓ Dahil</span></div><div class="price-row tot"><span>Toplam</span><span>${l.price.toLocaleString('tr-TR')} TRY</span></div>`;
+  const btn = document.getElementById('confirm-btn'); btn.disabled = true; btn.textContent = 'Bir zaman seçin';
+  document.getElementById('bk-overlay').classList.add('on');
+}
+
+function selectSlot(id, date, time) {
+  document.querySelectorAll('.slot').forEach(s => s.classList.remove('on'));
+  document.getElementById('slot-' + id).classList.add('on');
+  S.selSlot = { id, date, time };
+  const btn = document.getElementById('confirm-btn');
+  btn.disabled = false;
+  btn.textContent = `${date} ${time} — Rezervasyon Yap (${S.selLawyer.price.toLocaleString('tr-TR')} TRY)`;
+}
+
+function confirmBooking() {
+  if (!S.selSlot || !S.selLawyer) return;
+  document.getElementById('bk-overlay').classList.remove('on');
+  document.getElementById('success-msg').textContent = `${S.selLawyer.name} ile ${S.selSlot.date} saat ${S.selSlot.time} görüşmeniz planlandı. Video görüşme linki ve ödeme bilgileri e-posta adresinize gönderilecektir.`;
+  document.getElementById('success-screen').classList.add('on');
+}
+
+function overlayClick(e) { if (e.target === e.currentTarget) closeBk(); }
+function closeBk() { document.getElementById('bk-overlay').classList.remove('on'); }
+function closeSuccess() { document.getElementById('success-screen').classList.remove('on'); go('landing'); }
+
+/* PORTAL */
+function portalTab(id, el) {
+  document.querySelectorAll('.psec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.portal-item').forEach(i => i.classList.remove('on'));
+  document.getElementById('ps-' + id).classList.add('on');
+  if (el) el.classList.add('on');
+}
+
+function saveProfile() {
+  const name = document.getElementById('p-name').value.trim();
+  if (!name) return showToast('Ad soyad zorunludur');
+  document.getElementById('portal-lawyer-name').textContent = name;
+  showToast('Profil kaydedildi ✓');
+}
+
+const TOOL_INFO = {
+  sozlesme: { title:'Sözleşme Taslağı', label:'Sözleşme türü ve taraf bilgilerini girin' },
+  dilekce: { title:'Dilekçe Hazırla', label:'Dilekçe amacı ve taraf bilgilerini girin' },
+  ictihat: { title:'İçtihat Ara', label:'Araştırmak istediğiniz hukuki konuyu girin' },
+  ozet: { title:'Dava Özeti', label:'Özetlenecek dava bilgilerini girin' },
+};
+
+function openTool(key) {
+  const info = TOOL_INFO[key];
+  document.getElementById('tool-title').textContent = info.title;
+  document.getElementById('tool-label').textContent = info.label;
+  document.getElementById('tool-input').dataset.type = key;
+  document.getElementById('tool-input').value = '';
+  document.getElementById('tool-result').classList.remove('on');
+  document.getElementById('tool-output').classList.add('on');
+  document.getElementById('tool-output').scrollIntoView({ behavior:'smooth' });
+}
+
+function closeTool() { document.getElementById('tool-output').classList.remove('on'); }
+
+async function runTool() {
+  const input = document.getElementById('tool-input').value.trim();
+  if (!input) return showToast('Lütfen bilgi girin');
+  const key = document.getElementById('tool-input').dataset.type;
+  const btn = document.getElementById('tool-run-btn');
+  btn.disabled = true; btn.textContent = '⏳ Oluşturuluyor...';
+  await new Promise(r => setTimeout(r, 1000 + Math.random() * 600));
+  const result = document.getElementById('tool-result');
+  result.textContent = S.apiKey
+    ? '[API key mevcut — gerçek sonuç burada görünecek]\n\n' + input
+    : `[Demo Mod] "${TOOL_INFO[key].title}" için taslak:\n\nGerçek sonuç için Anthropic API key girin.\nÜcretsiz key: console.anthropic.com\n\n---\nGirilen bilgiler:\n${input}`;
+  result.classList.add('on');
+  btn.disabled = false; btn.textContent = '🤖 Oluştur';
+}
+
+/* CTA */
+function ctaGo() {
+  const email = document.getElementById('cta-email').value.trim();
+  if (!email || !email.includes('@')) return showToast('Lütfen geçerli bir e-posta girin');
+  document.getElementById('r-email').value = email;
+  go('auth'); authTab('register', null);
+  showToast('E-posta aktarıldı. Kaydı tamamlayın.');
+}
+
+/* TOAST */
+let _toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast-el');
+  el.textContent = msg; el.classList.add('on');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.classList.remove('on'), 2800);
+}
+
+/* INIT */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('init-time').textContent = nowTime();
+  renderLawyers('all');
+});
+
+/* SELF-TEST */
+function selfTest() {
+  const results = [];
+  function check(name, condition) { results.push({ name, pass:!!condition }); }
+  check('view-landing exists', !!document.getElementById('view-landing'));
+  check('view-chat exists', !!document.getElementById('view-chat'));
+  check('view-lawyers exists', !!document.getElementById('view-lawyers'));
+  check('view-auth exists', !!document.getElementById('view-auth'));
+  check('view-portal exists', !!document.getElementById('view-portal'));
+  check('nav exists', !!document.getElementById('main-nav'));
+  check('msgs container', !!document.getElementById('msgs'));
+  check('chat-input', !!document.getElementById('chat-input'));
+  check('send-btn', !!document.getElementById('send-btn'));
+  check('lgrid exists', !!document.getElementById('lgrid'));
+  check('6 lawyers rendered', document.querySelectorAll('.lcard').length === 6);
+  check('af-login exists', !!document.getElementById('af-login'));
+  check('af-register exists', !!document.getElementById('af-register'));
+  check('af-lawyer exists', !!document.getElementById('af-lawyer'));
+  check('bk-overlay exists', !!document.getElementById('bk-overlay'));
+  check('success-screen exists', !!document.getElementById('success-screen'));
+  check('toast-el exists', !!document.getElementById('toast-el'));
+  check('LAWYERS array has 6', LAWYERS.length === 6);
+  check('TOPIC_MAP has 8 keys', Object.keys(TOPIC_MAP).length === 8);
+  check('go() defined', typeof go === 'function');
+  check('sendMsg() defined', typeof sendMsg === 'function');
+  check('openBooking() defined', typeof openBooking === 'function');
+  check('renderLawyers() defined', typeof renderLawyers === 'function');
+  check('doLogin() defined', typeof doLogin === 'function');
+  check('showToast() defined', typeof showToast === 'function');
+  const passed = results.filter(r => r.pass).length;
+  const failed = results.filter(r => !r.pass);
+  console.log(`\n✅ ${passed}/${results.length} tests passed`);
+  if (failed.length) { console.warn('❌ FAILED:', failed.map(r => r.name)); }
+  else { console.log('🎉 All tests passed — app is ready!'); }
+  return results;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const res = selfTest();
+  if (res.filter(r => !r.pass).length === 0) {
+    console.log('%c✅ Cebindeki Avukat — All systems OK', 'color:#1B3A6B;font-weight:bold;font-size:14px');
+  }
+});
+</script>
+</body>
+</html>
